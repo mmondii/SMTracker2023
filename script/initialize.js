@@ -82,7 +82,9 @@ function initialize()
 						    new_score_indicator.setAttribute('class','score_indicator');
 						    if (wlevels[j]['suppress_score_indicator'] == "1"){
 						    	new_score_indicator.innerHTML = '&nbsp;';
-						    }else{
+						    }
+							// if the score is "undefined" then don't render it
+							else if (wlevels[j]['points'] !== undefined) {
 							    new_score_indicator.innerHTML = wlevels[j]['points'];
 						    }
 						  
@@ -117,34 +119,26 @@ function initialize()
 									    return false;
 									}, false);
 							break;
-							case 'firekill':
-								new_level.onclick = function(){score_array(this)};
-								new_level.addEventListener('contextmenu', function(ev) {
-									    ev.preventDefault();
-									    score_array(this,-1);
-									    return false;
-									}, false);
-							break;
 						}
 
 					if (wlevels[j]['mode'] == 'increment'){
-								// new_level_increment_count = document.createElement("span");
-								// new_level_increment_count.setAttribute('class','increment_count');
-								// new_level_increment_count.setAttribute('id','item' + l_id + 'count');
-								// // new_level_increment_count.innerHTML = '&nbsp;';
-								// // new_level_indicator.appendChild(new_level_increment_count);
-								// new_level_text.appendChild(new_level_increment_count);
-							}
-							if (wlevels[j]['mode'] == 'array'){
-								// xi = wlevels[j]['i'];
-								// wlevels[j]['status'] = 'active';
-								// wlevels[j]['text'] = wlevels[j]['textx'][xi];
-								// wlevels[j]['image'] = wlevels[j]['imagex'][xi];
-								// if (wlevels[j]['videox'] != null){ 
-								// 	wlevels[j]['video'] = wlevels[j]['videox'][xi];
-								// }
-								// wlevels[j]['points'] = wlevels[j]['pointsx'][xi];
-							}
+						// new_level_increment_count = document.createElement("span");
+						// new_level_increment_count.setAttribute('class','increment_count');
+						// new_level_increment_count.setAttribute('id','item' + l_id + 'count');
+						// // new_level_increment_count.innerHTML = '&nbsp;';
+						// // new_level_indicator.appendChild(new_level_increment_count);
+						// new_level_text.appendChild(new_level_increment_count);
+					}
+					if (wlevels[j]['mode'] == 'array'){
+						// xi = wlevels[j]['i'];
+						// wlevels[j]['status'] = 'active';
+						// wlevels[j]['text'] = wlevels[j]['textx'][xi];
+						// wlevels[j]['image'] = wlevels[j]['imagex'][xi];
+						// if (wlevels[j]['videox'] != null){ 
+						// 	wlevels[j]['video'] = wlevels[j]['videox'][xi];
+						// }
+						// wlevels[j]['points'] = wlevels[j]['pointsx'][xi];
+					}
 					
 					//tooltip,
 					new_level_indicator.appendChild(new_level_text); 
@@ -152,15 +146,19 @@ function initialize()
 					new_world.appendChild(new_level);
 					new_level.appendChild(new_level_indicator); 
 					l_id++;
-					}
+				}
 			}
 		if (!suppress_world_indicator){new_world_indicator.innerHTML = worlds[i];}
 		itemsdiv.appendChild(new_world);
 		}
-		if( getUrlVar('items') != null) {multi_apply(expand_status_json(JSON.parse(getUrlVar('items'))));
+		if( getUrlVar('items') != null) {
+			multi_apply(expand_status_json(JSON.parse(getUrlVar('items'))));
+		}
+
+		
 	}
-	}
-disable_all();
+
+	disable_all();
 if (getUrlVar('orientation') == 'right'){flip_orientation();}
 }
 

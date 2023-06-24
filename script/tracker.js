@@ -13,6 +13,10 @@ var images_enabled = true;
 var videos_enabled = true;
 var orientation = 'left';
 
+const FireKillElementId = "item36"; //html element id
+const FireKillPoints = [0,0,0,0,1,1,2,3];
+var firekill_count = 0;
+
 var ban_on_toggle = false;
 // signal from a html button
 function toggle_ban(element) {
@@ -157,7 +161,6 @@ function apply_item_status(xitem){
 	// console.log(xitem);
 	status_class = xitem[0]['status'];
 
-
 	if (xitem[0]['extra_class'] === undefined)
 	{
 		xxclass = ''
@@ -168,7 +171,6 @@ function apply_item_status(xitem){
 	}
 
 	xdiv = document.getElementById('item' + xitem[0]['l_id']);
-
 	// console.log(xitem);
 	if (xitem[0]['mode'] == 'increment')
 	{ 
@@ -189,6 +191,18 @@ function apply_item_status(xitem){
 	else
 	{
 		xdiv.getElementsByClassName('level_indicator')[0].style.backgroundImage = ''; 
+	}
+
+	// If the firekill task was changed, then update the firekill count & points to the UI counter.
+	if (xitem[0]['category'] == 'firekill'){
+		
+
+		var element = document.getElementById(FireKillElementId);
+		var level_indicator = element.getElementsByClassName('level_indicator')[0];
+		// Updates the firekill count to the world indicator
+		level_indicator.childNodes[0].textContent  = firekill_count;
+		// Updates the firekill points to the score indicator
+		level_indicator.getElementsByClassName('score_indicator')[0].innerHTML = FireKillPoints[firekill_count];
 	}
 
 	if (xitem[0]['mode'] == 'array'){
@@ -229,18 +243,38 @@ function apply_item_status(xitem){
 	{
 		xdiv.setAttribute('class','item ' + status_class);
 	}
+
+	
 }
 
 function update_score(){
+	firekill_count = 0; // global variable
+
 	var new_score = 0;
 	for(var i= 0; i<items.length;i++){
 		xitem = items[i];
-		if(xitem['status'] == 'active'){new_score = new_score + parseFloat(xitem['points'])}
+		if(xitem['status'] == 'active')
+		{
+			if (xitem.hasOwnProperty('category') && xitem['category'] === 'firekill') {
+				// firekill category 	
+				firekill_count = firekill_count + 1;
+			}
+
+			// Normal point calculation
+			if (xitem['points'] !== undefined) {
+				new_score = new_score + parseFloat(xitem['points'])
+			}
+		}
 		if(parseFloat(xitem['status']) + '' == xitem['status']){new_score = new_score + parseFloat(xitem['status']) * parseFloat(xitem['points'])} 
+	
 	}
+
+	// add firekill points
+	new_score = new_score + FireKillPoints[firekill_count];
+
 	//Update score
-		score_div = document.getElementById('score');
-		score_div.innerHTML = new_score + '';
+	score_div = document.getElementById('score');
+	score_div.innerHTML = new_score + '';
 }
 
 function score_array(xdiv, decrement = 0){
