@@ -1,0 +1,80 @@
+<body onkeypress = "pressed(event)">
+<link href = "style.css" rel = "stylesheet" type = "text/css"/>
+<!-- <script src = "preload_images.js" type = "text/javascript"></script> -->
+<script src = "script/script.js" type = "text/javascript"></script>
+<script src = "script/preload_images.js" type = "text/javascript"></script>
+<script src = "script/items.js" type = "text/javascript"></script>
+<script src = "script/tracker.js" type = "text/javascript"></script>
+<script src = "script/initialize.js" type = "text/javascript"></script>
+<script src = "script/multiuser.js" type = "text/javascript"></script>
+<script src = "script/menu.js" type = "text/javascript"></script>
+
+
+<div class = "items" id = "items" style = "margin-top:5px;">
+</div>
+
+<div class = "item_row" style = "height:82px;"></div>
+<div id = "score_row" class = "item_row" style = "text-transform: capitalize;position:fixed;bottom:0px;padding-top:10px;padding-bottom:0px;background-color:rgba(0,0,0,.85)">
+	<div id = "score_label" class = "item" style = "width:220px; color:#FFF;font-size:35px;margin-top:6px;font-family:ps;">Score:</div>
+	<div class = "item" style = "width:155px;color:#FFF;font-size:35px;margin-top:6px;font-family:ps;" id = "score">0</div>
+</div>
+
+<div id = "multi_dialog" style = "display:none;">
+	<div id = "initialize_multi">
+		Multi-user Tracking
+		<div id = "new_multi" onclick = "newmulti()">New Session</div>
+		<div class = "existing_multi" onclick = "joinmulti()">Join Session</div>
+		<div class = "cancel_multi" onclick = "hidemulti()">Cancel</div>
+	</div>
+
+	<div id = "offline_multi" style = "display:none;">
+		<div id = "offline_multi_label">Currently in offline mode</div>
+		<div id = "offline_multi_label2">Multi-user tracking only available online</div>
+
+		<div class = "existing_multi" onclick = "go_online()">Go online</div>
+		<div class = "cancel_multi" onclick = "hidemulti()">Cancel</div>
+	</div>
+
+	<div id = "join_multi" style = "display:none;">
+		<div id = "join_label">Key:</div>
+		<input type = "text" id = "key_entry" value = ""/>
+		<div class = "existing_multi" onclick = "join_session()">Join</div>
+		<div class = "cancel_multi" onclick = "cancelmulti()">Cancel</div>
+	</div>
+
+	<div id = "test_connect" style = "display:none;">
+		<div id = "connect_status">Connecting...</div>
+		<div class = "cancel_multi" onclick = "cancelmulti()">Cancel</div>
+	</div>
+
+	<div id = "parameters" style = "display:none;">
+		<div id = "session_label"></div>
+		<div id = "session_key" style = "user-select: text;cursor:auto; text-transform:none;">Connecting...</div>
+		<div class = "cancel_multi" onclick = "hidemulti()">Close</div>
+	</div>
+	<div id = "disconnect" class = "cancel_multi" style = "display:none;" onclick = "disconnect()">Disconnect</div>
+
+</div>
+
+<div id = "menu_dialog" style = "display:none;">
+	<p>Tracker Controls</p>
+	<ul style = "font-size:15px;">
+		<li>[T] - show full information</li>
+		<li>[R] - reset tracker items</li>
+		<li>[F] - flip tracker orientation</li>
+		<li>[M] - multi-user tracking</li>
+		<li>[v] - toggle videos</li>
+		<li>[i] - toggle images</li>
+		<li>[-] - decrement last count item</li>
+		<li>[Click] - activate/increment item</li>
+		<li>[Right click] - decrement item</li>
+	</ul>
+	<div id = "disconnect" class = "cancel_menu" onclick = "close_menu()">Close</div>
+	<div id = "gg" class = "ban_toggle" onclick = "toggle_ban(this)">Toggle Ban</div>
+</div>
+
+<div id = "tooltip" style = "display:none;">Tooltip disabled</div>
+
+<div id = "menu_toggle" onclick = "open_menu()">&nbsp;</div>
+
+<script>initialize()</script>t

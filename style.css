@@ -1,0 +1,72 @@
+@font-face {font-family:'ps'; src:url('fonts/ps/PressStart2P-vaV7.ttf');}
+
+body{margin:0 auto;width:646px;background-color:#071b2e;cursor:pointer;
+	text-transform: uppercase;
+	user-select: none;
+	overflow-x: hidden;
+	text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;}
+
+.wn {width:42px;}
+
+.level_indicator {width:100px;height:70px;padding-left:5px;padding-top:5px;float:left;
+	font-size:18px;background-repeat:no-repeat; background-size:cover;
+	box-sizing: border-box; border:3px #00ccff solid; border-radius: 7px;
+}
+
+.increment_count {}
+
+.score_indicator {/*width:35px;*/height:28px;padding:0px;padding-top:0px;margin:0;/*padding-left:5px;*//*padding-top:5px;*/float:right;font-size:18px;/*background-color: rgba(0, 0, 0, .7);*/text-align:right;/*border-radius: 100px;*/}
+.level_text      {width:84%;padding:5px;font-size:11px;text-align:center;/*padding-left:5px;*/background-color: rgba(0, 0, 0, .75);position:absolute;bottom:-7px;right:3px;border-radius: 7px;display:inline-block;vertical-align:bottom;}
+
+
+
+.banned       {filter: sepia(100%) saturate(300%) brightness(47%) hue-rotate(295deg);}
+.banned:hover {filter: sepia(100%) saturate(300%) brightness(70%) hue-rotate(295deg);}
+
+.inactive	    {filter:grayscale(100%) brightness(47%);}
+.inactive:hover {filter:grayscale(100%) brightness(77%);}
+
+.active		 {filter:saturate(100%) brightness(100%);}
+.active:hover {filter:saturate(120%) brightness(120%);}
+
+.world_indicator{width:35px;height:60px;float:left;font-size:30px;color:#999;font-family:ps;margin-top:12px;}
+
+.item_row{margin-top:5px;margin-left:5px;width:642px;height:75px;float:left;padding:0px;}
+
+.item{width:100px;margin-right:5px;float:left;height:60px;color:#FFF;font-family:ps;font-size:12px;}
+
+.alert_box{width:100%;font-family:ps;font-size:15px;color:#FFF;background-color:rgba(20,20,20,.7);position:absolute;left:0;}
+
+#multi_dialog{width:642px;position:fixed;top:0px;padding-top:20px;background-color:rgba(0,0,0,.9);font-size:24px;height:100%;color:#CCC;font-family:ps;}
+
+#new_multi{margin:20px;padding:20px;border:3px #00FFCC solid; border-radius: 5px;}
+#new_multi:hover{border:3px #55FFEE solid;color:#FFF;}
+
+.existing_multi{margin:20px;padding:20px;border:3px #00ccff solid; border-radius: 5px;}
+.existing_multi:hover{border:3px #55EEff solid;color:#FFF;}
+
+.cancel_multi{margin:20px;padding:20px;border:3px #555 solid; border-radius: 5px;}
+.cancel_multi:hover{border:3px #AAA solid;color:#FFF;}
+
+#key_entry{font-family:ps;font-size:24px;height:60px;width:100%;color:#FFF;background-color:#000;}
+
+#session_key{font-size:12px;}
+
+#menu_toggle{color:#CCC;position:fixed;top:0px;right:0px;width:80px;height:80px;background-image:url('images/menu.png');opacity:0;}
+#menu_toggle:hover{color:#FFF;opacity:.5;}
+
+#menu_dialog{width:642px;position:fixed;top:0px;padding-top:20px;background-color:rgba(0,0,0,.9);font-size:24px;height:100%;color:#CCC;font-family:ps;}
+.cancel_menu{margin:20px;padding:20px;border:3px #555 solid; border-radius: 5px;}
+.cancel_menu:hover{border:3px #AAA solid;color:#FFF;}
+
+.ban_toggle{margin:20px;padding:20px;border:3px #555 solid; border-radius: 5px;}
+.ban_toggle:hover{border:3px #AAA solid;color:#FFF;}
+
+.ban_toggled{margin:20px;padding:20px;border:3px rgb(255, 111, 111) solid; border-radius: 5px; color:rgb(255, 111, 111);}
+.ban_toggled:hover{border:3px rgb(255, 111, 111) solid; color:rgb(255, 111, 111);}
+
+#tooltip{position: fixed;width:200px;bottom:0px;right: 0px;color:#FFF;font-family:ps;background-color:#222;padding: 10px;}
